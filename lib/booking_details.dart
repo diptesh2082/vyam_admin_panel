@@ -73,7 +73,7 @@ class _BookingDetailsState extends State<BookingDetails> {
                 Center(
                   child: StreamBuilder<QuerySnapshot>(
                     stream: FirebaseFirestore.instance
-                        .collection("product_details")
+                        .collectionGroup("user_booking")
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {
