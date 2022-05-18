@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:admin_panel_vyam/services/maps_api.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../services/MatchIDMethod.dart';
 import '../../services/deleteMethod.dart';
 import 'Packages/Extra_package.dart';
@@ -162,6 +166,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                               ),
                               DataColumn(
                                 label: Text(
+                                  'Upload Image',
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              DataColumn(
+                                label: Text(
                                   'Edit',
                                   style: TextStyle(fontWeight: FontWeight.w600),
                                 ),
@@ -186,6 +196,35 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 
+// Upload Images
+  Future<List<XFile>> multiimagepicker() async {
+    List<XFile>? _images = await ImagePicker().pickMultiImage();
+    if (_images != null && _images.isNotEmpty) {
+      return _images;
+    }
+    return [];
+  }
+
+  Future<String> uploadimage(XFile image) async {
+    Reference db = FirebaseStorage.instance
+        .ref("TransformerGymImage/${getImageName(image)}");
+    await db.putFile(File(image.path));
+    print("image uploaded1");
+    return await db.getDownloadURL();
+  }
+
+  String getImageName(XFile image) {
+    return image.path.split("/").last;
+  }
+
+  Future<List<String>> multiimageuploader(List<XFile> list) async {
+    List<String> _path = [];
+    for (XFile _image in list) {
+      _path.add(await uploadimage(_image));
+    }
+    return _path;
+  }
+
   List<DataRow> _buildlist(
       BuildContext context, List<DocumentSnapshot> snapshot) {
     return snapshot.map((data) => _buildListItem(context, data)).toList();
@@ -195,7 +234,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     String gymId = data['gym_id'];
     GeoPoint loc = data['location'];
     bool legit = data['legit'];
-    bool status=data["gym_status"];
+    bool status = data["gym_status"];
     String loctext = "${loc.latitude},${loc.longitude}";
     return DataRow(cells: [
       DataCell(data != null ? Text(data['name'] ?? "") : Text("")),
@@ -271,6 +310,28 @@ class _ProductDetailsState extends State<ProductDetails> {
           ),
         ),
       ),
+
+// Image Upload data Cell
+      DataCell(Row(children: [
+        const Spacer(),
+        GestureDetector(
+          onTap: () async {
+            List<XFile>? _images = await multiimagepicker();
+            //  multiimages = await multiimagepicker();
+            if (_images.isNotEmpty) {
+              await multiimageuploader(_images);
+              setState(() {});
+            }
+          },
+          child: const Center(
+            child: Icon(
+              Icons.file_upload_outlined,
+              size: 20,
+            ),
+          ),
+        )
+      ])),
+
       DataCell(
         const Text(""),
         showEditIcon: true,

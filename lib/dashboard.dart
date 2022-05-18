@@ -1,5 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:admin_panel_vyam/Screens/category_screen.dart';
+
+
+import 'Screens/Product Details/product_details.dart';
+import 'Screens/booking_details.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({Key? key}) : super(key: key);
@@ -15,39 +20,109 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       padding: const EdgeInsets.all(10.0),
       itemCount: 11,
       itemBuilder: (ctx, i) {
-        if (i == 0) {
+
+ if (i == 0) {
+        
           //Intial Commit
-          return buildDashBoardCard(
-              title: 'Categories', count: 4, collectionID: 'category');
+          return InkWell(
+            hoverColor: Colors.blue,
+            splashColor: Colors.amber,
+           
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CategoryInfoScreen()));
+            },
+            child: buildDashBoardCard(
+                title: 'Categories',
+                count: 4,
+                collectionID: 'category',
+          ),
+          );
         }
         if (i == 1) {
-          return buildDashBoardCard(
-              title: 'Vendor', count: 17, collectionID: 'product_details');
+          return GestureDetector(
+            child: buildDashBoardCard(
+                title: 'Vendor', count: 17, collectionID: 'product_details'),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProductDetails()));
+            },
+          );
         }
         if (i == 2) {
-          return buildDashBoardCard(title: 'Per Day', count: 16);
+          return GestureDetector(
+            child: buildDashBoardCard(title: 'Per Day', count: 16),
+            onTap: () {
+              // Navigator.push(context,
+              //   MaterialPageRoute(builder: (context) => ProductDetails()));
+            },
+          );
         }
         if (i == 3) {
-          return buildDashBoardCard(
-              title: 'Banner', count: 3, collectionID: 'banner_details');
+          return GestureDetector(
+            child: buildDashBoardCard(
+                title: 'Banner', count: 3, collectionID: 'banner_details'),
+            onTap: () {
+              // Navigator.push(context,
+              //   MaterialPageRoute(builder: (context) => ProductDetails()));
+            },
+          );
         }
         if (i == 4) {
-          return buildDashBoardCard(title: 'Total Bookings', count: 129);
+          return GestureDetector(
+            child: buildDashBoardCard(title: 'Total Bookings', count: 129),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BookingDetails()));
+            },
+          );
         }
         if (i == 5) {
-          return buildDashBoardCard(title: 'Total Confirm', count: 1);
+          return GestureDetector(
+            child: buildDashBoardCard(title: 'Total Confirm', count: 1),
+            onTap: () {
+              // Navigator.push(context,
+              //   MaterialPageRoute(builder: (context) => ProductDetails()));
+            },
+          );
         }
         if (i == 6) {
-          return buildDashBoardCard(title: 'Total Active', count: 7);
+          return GestureDetector(
+            child: buildDashBoardCard(title: 'Total Active', count: 7),
+            onTap: () {
+              // Navigator.push(context,
+              //   MaterialPageRoute(builder: (context) => ProductDetails()));
+            },
+          );
         }
         if (i == 7) {
-          return buildDashBoardCard(title: 'Total Complete', count: 116);
+          return GestureDetector(
+            child: buildDashBoardCard(title: 'Total Complete', count: 116),
+            onTap: () {
+              // Navigator.push(context,
+              //   MaterialPageRoute(builder: (context) => ProductDetails()));
+            },
+          );
         }
         if (i == 8) {
-          return buildDashBoardCard(title: 'Total Cancel', count: 4);
+          return GestureDetector(
+            child: buildDashBoardCard(title: 'Total Cancel', count: 4),
+            onTap: () {
+              //Navigator.push(context,
+              //  MaterialPageRoute(builder: (context) => ProductDetails()));
+            },
+          );
         }
         if (i == 9) {
-          return buildDashBoardCard(title: 'Total Bookings', count: 1);
+          return GestureDetector(
+            child: buildDashBoardCard(title: 'Total Bookings', count: 1),
+            onTap: () {
+              // Navigator.push(context,
+              //   MaterialPageRoute(builder: (context) => ProductDetails()));
+            },
+          );
         }
         return buildDashBoardCard();
       },
@@ -58,6 +133,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         mainAxisSpacing: 20,
       ),
     );
+
+
+       
   }
 
   buildDashBoardCard({

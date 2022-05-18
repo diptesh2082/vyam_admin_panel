@@ -14,6 +14,7 @@ import 'package:admin_panel_vyam/Screens/faq_details.dart';
 import 'package:admin_panel_vyam/Screens/feedback_dateils.dart';
 import 'package:admin_panel_vyam/Screens/payments_screen.dart';
 import 'package:admin_panel_vyam/services/image_picker_api.dart';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dashboard.dart';
@@ -83,6 +84,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
                 setState(() {
                   index = 1;
                 });
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -93,6 +95,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
               onTap: () {
                 index = 2;
                 setState(() {});
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -104,6 +107,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
                 setState(() {
                   index = 3;
                 });
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -115,6 +119,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
                 setState(() {
                   index = 4;
                 });
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -126,6 +131,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
                 setState(() {
                   index = 5;
                 });
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -136,6 +142,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
               onTap: () {
                 index = 6;
                 setState(() {});
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -146,6 +153,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
               onTap: () {
                 index = 7;
                 setState(() {});
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -156,6 +164,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
               onTap: () {
                 index = 8;
                 setState(() {});
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -166,6 +175,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
               onTap: () {
                 index = 9;
                 setState(() {});
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -176,6 +186,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
               onTap: () {
                 index = 10;
                 setState(() {});
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -186,6 +197,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
               onTap: () {
                 index = 11;
                 setState(() {});
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -196,6 +208,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
               onTap: () {
                 index = 12;
                 setState(() {});
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -206,6 +219,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
               onTap: () {
                 index = 13;
                 setState(() {});
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -216,6 +230,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
               onTap: () {
                 index = 14;
                 setState(() {});
+                  Navigator.pop(context);
               },
             ),
             ListTile(
@@ -224,6 +239,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
                 style: kTextStyle,
               ),
               onTap: () {
+               //  FirebaseAuth.instance.signOut();
                 // setState(() {
                 //   index = 5;
                 // });
