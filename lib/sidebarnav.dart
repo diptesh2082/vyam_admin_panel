@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:admin_panel_vyam/Screens/CitiesScreen.dart';
 import 'package:admin_panel_vyam/Screens/Review.dart';
 import 'package:admin_panel_vyam/Screens/Tracking/TrackingScreen.dart';
+import 'package:admin_panel_vyam/Screens/banners.dart';
+// import 'package:admin_panel_vyam/Screens/banner_details.dart';
 import 'package:admin_panel_vyam/Screens/booking_details.dart';
 import 'package:admin_panel_vyam/Screens/cancelation_page.dart';
 import 'package:admin_panel_vyam/Screens/category_screen.dart';
@@ -220,6 +222,16 @@ class _SideNavBar1State extends State<SideNavBar1> {
             ),
             ListTile(
               title: Text(
+                'Banner Details',
+                style: kTextStyle,
+              ),
+              onTap: () {
+                index = 15;
+                setState(() {});
+              },
+            ),
+            ListTile(
+              title: Text(
                 'Logout',
                 style: kTextStyle,
               ),
@@ -248,6 +260,7 @@ class _SideNavBar1State extends State<SideNavBar1> {
           index == 12 ? const FaqDetails() : Container(),
           index == 13 ? const CancelationPage() : Container(),
           index == 14 ? const ReviewPage() : Container(),
+          index == 15 ? const BannerPage() : Container(),
         ],
       ),
     );

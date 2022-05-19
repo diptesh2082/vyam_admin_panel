@@ -78,12 +78,29 @@ class _CouponState extends State<Coupon> {
                             columns: const [
                               DataColumn(
                                   label: Text(
+                                'Coupon ID',
+                                style: TextStyle(fontWeight: FontWeight.w600),
+                              )),
+                              DataColumn(
+                                  label: Text(
                                 'Code',
                                 style: TextStyle(fontWeight: FontWeight.w600),
                               )),
                               DataColumn(
                                 label: Text(
                                   'Details',
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              DataColumn(
+                                label: Text(
+                                  'Breif',
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              DataColumn(
+                                label: Text(
+                                  'Tag',
                                   style: TextStyle(fontWeight: FontWeight.w600),
                                 ),
                               ),
@@ -133,10 +150,17 @@ class _CouponState extends State<Coupon> {
   DataRow _buildListItem(BuildContext context, DocumentSnapshot data) {
     String couponIdData = data['coupon_id'];
     return DataRow(cells: [
+      DataCell(data['coupon_id'] != null
+          ? Text(data['coupon_id'] ?? "")
+          : const Text("")),
       DataCell(
           data['code'] != null ? Text(data['code'] ?? "") : const Text("")),
       DataCell(
           data['detail'] != null ? Text(data['detail'] ?? "") : const Text("")),
+      DataCell(data['brief'] != null
+          ? SizedBox(width: 220.0, child: Text(data['brief'] ?? ""))
+          : const Text("")),
+      DataCell(data['tag'] != null ? Text(data['tag'] ?? "") : const Text("")),
       DataCell(data['discount'] != null
           ? Text(data['discount'] ?? "")
           : const Text("")),
@@ -152,6 +176,8 @@ class _CouponState extends State<Coupon> {
                     title: data['title'],
                     code: data['code'],
                     details: data['detail'],
+                    brief: data['brief'],
+                    tag: data['tag'],
                     discount: data['discount'],
                     couponId: data['coupon_id'],
                   ),
@@ -170,6 +196,8 @@ class _CouponState extends State<Coupon> {
 
   final TextEditingController _addCode = TextEditingController();
   final TextEditingController _adddetails = TextEditingController();
+  final TextEditingController _addbrief = TextEditingController();
+  final TextEditingController _addtag = TextEditingController();
   final TextEditingController _adddiscount = TextEditingController();
   final TextEditingController _addtitle = TextEditingController();
 
@@ -196,6 +224,9 @@ class _CouponState extends State<Coupon> {
                     customTextField(
                         hinttext: "Details", addcontroller: _adddetails),
                     customTextField(
+                        hinttext: "Brief", addcontroller: _addbrief),
+                    customTextField(hinttext: "Tag", addcontroller: _addtag),
+                    customTextField(
                         hinttext: "Discount", addcontroller: _adddiscount),
                     customTextField(
                         hinttext: "Title", addcontroller: _addtitle),
@@ -213,6 +244,8 @@ class _CouponState extends State<Coupon> {
                             {
                               'code': _addCode.text,
                               'detail': _adddetails.text,
+                              'brief': _addbrief.text,
+                              'tag': _addtag.text,
                               'discount': _adddiscount.text,
                               'title': _addtitle.text,
                               'coupon_id': id,
@@ -234,6 +267,8 @@ class ProductEditBox extends StatefulWidget {
   const ProductEditBox(
       {Key? key,
       required this.details,
+      required this.brief,
+      required this.tag,
       required this.discount,
       required this.title,
       required this.code,
@@ -241,6 +276,8 @@ class ProductEditBox extends StatefulWidget {
       : super(key: key);
 
   final String details;
+  final String brief;
+  final String tag;
   final String discount;
   final String title;
   final String code;
@@ -253,6 +290,8 @@ class ProductEditBox extends StatefulWidget {
 class _ProductEditBoxState extends State<ProductEditBox> {
   final TextEditingController _code = TextEditingController();
   final TextEditingController _detail = TextEditingController();
+  final TextEditingController _brief = TextEditingController();
+  final TextEditingController _tag = TextEditingController();
   final TextEditingController _discount = TextEditingController();
   final TextEditingController _title = TextEditingController();
 
@@ -261,6 +300,8 @@ class _ProductEditBoxState extends State<ProductEditBox> {
     super.initState();
     _code.text = widget.code;
     _detail.text = widget.details;
+    _brief.text = widget.brief;
+    _tag.text = widget.tag;
     _discount.text = widget.discount;
     _title.text = widget.title;
   }
@@ -286,6 +327,8 @@ class _ProductEditBoxState extends State<ProductEditBox> {
               ),
               customTextField(hinttext: "Code", addcontroller: _code),
               customTextField(hinttext: "Detail", addcontroller: _detail),
+              customTextField(hinttext: "Brief", addcontroller: _brief),
+              customTextField(hinttext: "Tag", addcontroller: _discount),
               customTextField(hinttext: "Discount", addcontroller: _discount),
               customTextField(hinttext: "Title", addcontroller: _title),
               Padding(
@@ -301,6 +344,8 @@ class _ProductEditBoxState extends State<ProductEditBox> {
                       Map<String, dynamic> data = <String, dynamic>{
                         'code': _code.text,
                         'detail': _detail.text,
+                        'brief': _brief.text,
+                        'tag': _tag.text,
                         'discount': _discount.text,
                         'title': _title.text,
                         'coupon_id': widget.couponId,

@@ -91,7 +91,13 @@ class _BannerPageState extends State<BannerPage> {
                                   style: TextStyle(fontWeight: FontWeight.w600),
                                 ),
                               ),
-                              DataColumn(label: Text(''))
+                              DataColumn(
+                                label: Text(
+                                  'ID',
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              DataColumn(label: Text('')),
                             ],
                             rows: _buildlist(context, snapshot.data!.docs)),
                       );
@@ -116,6 +122,7 @@ class _BannerPageState extends State<BannerPage> {
       DataCell(
           data['name'] != null ? Text(data['name'] ?? "") : const Text("")),
       DataCell(Image.network(data['image'])),
+      DataCell(data['id'] != null ? Text(data['id'] ?? "") : const Text("")),
       DataCell(const Text(""), showEditIcon: true, onTap: () {
         showDialog(
             context: context,
